@@ -65,7 +65,31 @@ public class ElementRepositoryTest {
             count = count + 1;
         }
 
-        assertEquals(5, count);
+        assertEquals(9, count);
+    }
+
+    @Test
+    public void testFindByElementName() {
+        Element element = new Element("FindTest");
+        elementRepository.save(element);
+
+        Element element1 = elementRepository.findByElementName("FindTest");
+
+        assertEquals(element.getId(), element1.getId());
+    }
+
+    @Test
+    public void testFindAllByName() {
+        Element element1 = new Element("FindListTest");
+        elementRepository.save(element1);
+        Element element2 = new Element("FindListTest");
+        elementRepository.save(element2);
+        Element element3 = new Element("FindListTest");
+        elementRepository.save(element3);
+
+        List<Element> foundElList = elementRepository.findAllByElementName("FindListTest");
+
+        assertEquals(3, foundElList.size());
     }
 
 }
