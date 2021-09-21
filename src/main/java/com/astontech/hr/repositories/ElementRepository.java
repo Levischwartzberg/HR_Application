@@ -10,4 +10,8 @@ public interface ElementRepository extends CrudRepository<Element, Integer> {
     Element findByElementName(String elementName);
 
     List<Element> findAllByElementName(String elementName);
+
+    List<Element> findElementsByElementNameContains(String subStr);
+
+    Element findFirstByOrderByElementNameAsc();
 }

@@ -65,7 +65,7 @@ public class ElementRepositoryTest {
             count = count + 1;
         }
 
-        assertEquals(9, count);
+        assertEquals(13, count);
     }
 
     @Test
@@ -90,6 +90,29 @@ public class ElementRepositoryTest {
         List<Element> foundElList = elementRepository.findAllByElementName("FindListTest");
 
         assertEquals(3, foundElList.size());
+    }
+
+    @Test
+    public void findSubStr() {
+        List<Element> elementList = new ArrayList<>();
+        elementList.add(new Element("Phone"));
+        elementList.add(new Element("Email"));
+        elementList.add(new Element("Laptop"));
+        elementList.add(new Element("PayRate"));
+        elementRepository.save(elementList);
+        List<Element> foundElList = elementRepository.findElementsByElementNameContains("a");
+
+        System.out.println(foundElList.size());
+        for (Element element : foundElList) {
+            System.out.println(element.getElementName() + " " + element.getId());
+        }
+    }
+
+    @Test
+    public void findAndOrder() {
+        Element element = elementRepository.findFirstByOrderByElementNameAsc();
+
+        System.out.println(element.getElementName());
     }
 
 }
