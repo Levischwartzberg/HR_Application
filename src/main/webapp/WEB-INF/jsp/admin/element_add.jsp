@@ -3,8 +3,11 @@
 <%@include file="../includes/subnav_admin.jsp" %>
 
 <div class="container">
+
+    <%@include file="element_sidebar.jsp" %>
+
     <div class="col-sm-8">
-        <form:form cssClass="form=horizontal" modelAttribute="elementVO" action="/admin/element" method="post">
+        <form:form cssClass="form=horizontal" modelAttribute="elementVO" action="/admin/element/add" method="post">
             <fieldset>
                 <legend>Element Management</legend>
                 <div class="form_group">

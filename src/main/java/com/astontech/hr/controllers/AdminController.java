@@ -32,20 +32,29 @@ public class AdminController {
         return "admin/adminHome";
     }
 
-    @RequestMapping(value = "/admin/element", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/element/add", method = RequestMethod.GET)
     public String adminElementGet(Model model) {
         model.addAttribute("elementVO", new ElementVO());
-        return "admin/element";
+        return "admin/element_add";
     }
 
-    @RequestMapping(value = "/admin/element", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/element/add", method = RequestMethod.POST)
     public String adminElementPost(ElementVO elementVO, Model model) {
         elementVO.splitNewElementsIntoArray();
         logElementVO(elementVO);
         saveElementTypeAndElementsFromVO(elementVO);
-        return "admin/element";
+        return "admin/element_add";
     }
 
+    @RequestMapping(value = "/admin/element/list", method = RequestMethod.GET)
+    public String adminElementList(Model model) {
+        model.addAttribute("elementTypeList", elementTypeService.listAllElementTypes());
+        return "admin/element_list";
+    }
+
+
+
+    //region Helper Methods
     private void saveElementTypeAndElementsFromVO(ElementVO elementVO) {
         List<Element> newElementList = new ArrayList<>();
         for(String str : elementVO.getNewElementArray()) {
@@ -64,4 +73,5 @@ public class AdminController {
             log.info("New Elements: " + str);
         }
     }
+    //endregion
 }
