@@ -15,12 +15,14 @@
 
         <c:url value="/webjars/bootstrap/3.3.4/css/bootstrap.min.css" var="bootstrapCSS" />
             <link href="${bootstrapCSS}" rel="stylesheet" media="screen" />
+        <c:url value="/src/main/webapp/static/css/bootswatch_cerulean.css" var="bootswatchCerulean" />
+            <link href="${bootswatchCerulean}" rel="stylesheet" media="screen" />
 
         <%--Custom JS--%>
-        <c:url value="/static/js/common.js" var="commonJS" />
+        <c:url value="/src/main/webapp/static/js/common.js" var="commonJS" />
             <script src="${commonJs}" ></script>
         <%--Custom CSS--%>
-        <c:url value="/static/css/astonengineer.css" var="bootstrapCUSTOM" />
+        <c:url value="/src/main/webapp/static/css/astonengineer.css" var="bootstrapCUSTOM" />
             <link href="${bootstrapCUSTOM}" rel="stylesheet" media="screen">
 
         <title>Aston Technologies HR Application</title>

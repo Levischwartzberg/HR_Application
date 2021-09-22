@@ -4,8 +4,15 @@ public class ElementVO {
 
     private String newElementType;
     private String newElements;
+    private String[] newElementArray;
 
     public ElementVO() {}
+
+    //region Custom Methods
+    public void splitNewElementsIntoArray() {
+        this.newElementArray = this.newElements.split("\\r?\\n");
+    }
+    //endregion
 
     public String getNewElementType() {
         return newElementType;
@@ -21,5 +28,13 @@ public class ElementVO {
 
     public void setNewElements(String newElements) {
         this.newElements = newElements;
+    }
+
+    public String[] getNewElementArray() {
+        return newElementArray;
+    }
+
+    public void setNewElementArray(String[] newElementArray) {
+        this.newElementArray = newElementArray;
     }
 }
