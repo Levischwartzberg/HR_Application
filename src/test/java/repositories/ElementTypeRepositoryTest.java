@@ -31,7 +31,7 @@ public class ElementTypeRepositoryTest {
 
         elementTypeRepository.save(elementType);
 
-        assertEquals(elementType.getElementType(), elementTypeRepository.findByElementType("Derp").getElementType());
+        assertEquals(elementType.getElementTypeName(), elementTypeRepository.findByElementTypeName("Derp").getElementTypeName());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class ElementTypeRepositoryTest {
 
         elementTypeRepository.save(elementType);
 
-        assertEquals(elementType.getElementType(), elementTypeRepository.findOne(1).getElementType());
+        assertEquals(elementType.getElementTypeName(), elementTypeRepository.findOne(1).getElementTypeName());
     }
 
     @Test
@@ -53,9 +53,9 @@ public class ElementTypeRepositoryTest {
 
         elementTypeRepository.save(elTyList);
 
-        List<ElementType> foundList = elementTypeRepository.findTop3ByVersionOrderByElementTypeAsc(0);
+        List<ElementType> foundList = elementTypeRepository.findTop3ByVersionOrderByElementTypeNameAsc(0);
         for (ElementType elementType : foundList) {
-            System.out.println(elementType.getElementType());
+            System.out.println(elementType.getElementTypeName());
         }
 
         assertEquals(3, foundList.size());
@@ -63,9 +63,9 @@ public class ElementTypeRepositoryTest {
 
     @Test
     public void OrderAlphabetically() {
-        List<ElementType> foundList = elementTypeRepository.findByOrderByElementTypeDesc();
+        List<ElementType> foundList = elementTypeRepository.findByOrderByElementTypeNameDesc();
         for (ElementType elementType : foundList) {
-            System.out.println(elementType.getElementType());
+            System.out.println(elementType.getElementTypeName());
         }
 
         assertEquals(6, foundList.size());

@@ -16,7 +16,7 @@ public interface ElementTypeService {
     void deleteElementType(Integer id);
 
     //custom
-    ElementType findByElementType(String elementType);
+    ElementType findByElementTypeName(String elementTypeName);
 
     ElementType findOne(Integer Id);
 

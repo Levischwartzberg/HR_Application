@@ -17,6 +17,8 @@
             <link href="${bootstrapCSS}" rel="stylesheet" media="screen" />
         <c:url value="/src/main/webapp/static/css/bootswatch_cerulean.css" var="bootswatchCerulean" />
             <link href="${bootswatchCerulean}" rel="stylesheet" media="screen" />
+        <c:url value="/src/main/webapp/static/css/bootswatch_morph.css" var="bootswatchMorph" />
+            <link href="${bootswatchMorph}" rel="stylesheet" media="screen" />
 
         <%--Custom JS--%>
         <c:url value="/src/main/webapp/static/js/common.js" var="commonJS" />

@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface ElementTypeRepository extends CrudRepository<ElementType, Integer> {
 
-    ElementType findByElementType(String elementType);
+    ElementType findByElementTypeName(String elementTypeName);
 
     ElementType findOne(Integer Id);
 
-    List<ElementType> findTop3ByVersionOrderByElementTypeAsc(Integer version);
+    List<ElementType> findTop3ByVersionOrderByElementTypeNameAsc(Integer version);
 
-    List<ElementType> findByOrderByElementTypeDesc();
+    List<ElementType> findByOrderByElementTypeNameDesc();
 }

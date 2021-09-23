@@ -22,7 +22,7 @@
                     <c:forEach var="elementType" items="${elementTypeList}">
                         <tr>
                             <td>${elementType.id}</td>
-                            <td>${elementType.elementType}</td>
+                            <td>${elementType.elementTypeName}</td>
                             <td>Elements go here....</td>
                             <td>Edit</td>
                             <td>Delete</td>

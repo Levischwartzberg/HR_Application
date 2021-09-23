@@ -31,7 +31,7 @@ public class ElementTypeServiceTest {
 
         elementTypeService.saveElementType(elementType);
 
-        assertEquals(elementType.getElementType(), elementTypeService.findByElementType("Derp").getElementType());
+        assertEquals(elementType.getElementTypeName(), elementTypeService.findByElementTypeName("Derp").getElementTypeName());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class ElementTypeServiceTest {
 
         elementTypeService.saveElementType(elementType);
 
-        assertEquals(elementType.getElementType(), elementTypeService.findOne(1).getElementType());
+        assertEquals(elementType.getElementTypeName(), elementTypeService.findOne(1).getElementTypeName());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ElementTypeServiceTest {
 
         List<ElementType> foundList = elementTypeService.findTop3ByVersionOrderByElementTypeAsc(0);
         for (ElementType elementType : foundList) {
-            System.out.println(elementType.getElementType());
+            System.out.println(elementType.getElementTypeName());
         }
 
         assertEquals(3, foundList.size());
@@ -65,7 +65,7 @@ public class ElementTypeServiceTest {
     public void OrderAlphabetically() {
         List<ElementType> foundList = elementTypeService.findByOrderByElementTypeDesc();
         for (ElementType elementType : foundList) {
-            System.out.println(elementType.getElementType());
+            System.out.println(elementType.getElementTypeName());
         }
 
         assertEquals(6, foundList.size());

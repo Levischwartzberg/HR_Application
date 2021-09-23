@@ -41,8 +41,8 @@ public class ElementTypeServiceImpl implements ElementTypeService {
     }
 
     @Override
-    public ElementType findByElementType(String elementType) {
-        return elementTypeRepository.findByElementType(elementType);
+    public ElementType findByElementTypeName(String elementTypeName) {
+        return elementTypeRepository.findByElementTypeName(elementTypeName);
     }
 
     @Override
@@ -52,11 +52,11 @@ public class ElementTypeServiceImpl implements ElementTypeService {
 
     @Override
     public List<ElementType> findTop3ByVersionOrderByElementTypeAsc(Integer version) {
-        return elementTypeRepository.findTop3ByVersionOrderByElementTypeAsc(version);
+        return elementTypeRepository.findTop3ByVersionOrderByElementTypeNameAsc(version);
     }
 
     @Override
     public List<ElementType> findByOrderByElementTypeDesc() {
-        return elementTypeRepository.findByOrderByElementTypeDesc();
+        return elementTypeRepository.findByOrderByElementTypeNameDesc();
     }
 }
