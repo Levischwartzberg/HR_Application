@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,7 +36,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/element/add", method = RequestMethod.GET)
     public String adminElementGet(Model model) {
         model.addAttribute("elementVO", new ElementVO());
-        return "admin/element_add";
+        return "admin/element/element_add";
     }
 
     @RequestMapping(value = "/admin/element/add", method = RequestMethod.POST)
@@ -43,16 +44,27 @@ public class AdminController {
         elementVO.splitNewElementsIntoArray();
         logElementVO(elementVO);
         saveElementTypeAndElementsFromVO(elementVO);
-        return "admin/element_add";
+        return "admin/element/element_add";
     }
 
     @RequestMapping(value = "/admin/element/list", method = RequestMethod.GET)
     public String adminElementList(Model model) {
         model.addAttribute("elementTypeList", elementTypeService.listAllElementTypes());
-        return "admin/element_list";
+        return "admin/element/element_list";
     }
 
+    @RequestMapping(value = "admin/element/edit/{id}", method = RequestMethod.GET)
+    public String elementTypeEdit(@PathVariable int id, Model model) {
+        ElementType elementType = elementTypeService.getElementTypeById(id);
 
+        List<Element> elementList = elementType.getElementList();
+        for (Element element : elementList) {
+            System.out.println(element.getElementName());
+        }
+
+        model.addAttribute("elementType", elementType);
+        return "admin/element/element_edit";
+    }
 
     //region Helper Methods
     private void saveElementTypeAndElementsFromVO(ElementVO elementVO) {

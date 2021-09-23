@@ -54,7 +54,7 @@ public class ElementType {
         return elementTypeName;
     }
 
-    public void setElementType(String elementTypeName) {
+    public void setElementTypeName(String elementTypeName) {
         this.elementTypeName = elementTypeName;
     }
 
