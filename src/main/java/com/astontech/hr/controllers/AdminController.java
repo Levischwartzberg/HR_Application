@@ -89,7 +89,14 @@ public class AdminController {
                                     Model model,
                                     @RequestParam("inputNewElement") String newElement) {
         if(!newElement.equals("")) {
-            elementType.getElementList().add(new Element(newElement));
+            if(elementType.getElementList() == null) {
+                List<Element> elementList = new ArrayList<>();
+                elementList.add(new Element(newElement));
+                elementType.setElementList(elementList);
+            }
+            else {
+                elementType.getElementList().add(new Element(newElement));
+            }
         }
         for(int i = 0; i < elementType.getElementList().size(); i++) {
             if(elementType.getElementList().get(i).getElementName().equals("")) {

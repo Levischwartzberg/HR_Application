@@ -1,8 +1,8 @@
-<nav class="navbar">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
-                <span class="scroll-arrow">Sub Menu</span>
+                <span class="sr-only">Sub Menu</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
