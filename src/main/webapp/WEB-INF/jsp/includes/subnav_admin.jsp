@@ -1,9 +1,14 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
-
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+                <span class="scroll-arrow">Sub Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
-        <div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-2">
             <ul class="nav navbar-nav">
                 <li><a href="/admin/">Admin</a></li>
                 <li><a href="/admin/element/list">Elements</a></li>
