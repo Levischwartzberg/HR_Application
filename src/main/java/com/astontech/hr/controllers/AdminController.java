@@ -37,14 +37,31 @@ public class AdminController {
     @RequestMapping(value = "/admin/element/add", method = RequestMethod.GET)
     public String adminElementGet(Model model) {
         model.addAttribute("elementVO", new ElementVO());
+        model.addAttribute("warningAlert", "visible");
         return "admin/element/element_add";
     }
 
     @RequestMapping(value = "/admin/element/add", method = RequestMethod.POST)
     public String adminElementPost(ElementVO elementVO, Model model) {
+        boolean success = true;
         elementVO.splitNewElementsIntoArray();
+        System.out.println(elementVO.getNewElementType());
         logElementVO(elementVO);
-        saveElementTypeAndElementsFromVO(elementVO);
+        if(elementVO.getNewElementType().equals("")) {
+            success = false;
+        }
+        else {
+            saveElementTypeAndElementsFromVO(elementVO);
+        }
+
+
+        if(success) {
+            model.addAttribute("successAlert", "visible");
+        }
+        else {
+            model.addAttribute("errorAlert", "visible");
+        }
+        model.addAttribute("elementVO", new ElementVO());
         return "admin/element/element_add";
     }
 
@@ -81,6 +98,7 @@ public class AdminController {
         }
 
         elementTypeService.saveElementType(elementType);
+        model.addAttribute("succesAlert", "visible");
         return "redirect:/admin/element/edit/" + elementType.getId();
     }
 

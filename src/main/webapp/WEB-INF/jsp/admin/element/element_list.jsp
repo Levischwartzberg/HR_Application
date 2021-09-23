@@ -6,8 +6,8 @@
 
     <%@include file="element_sidebar.jsp" %>
 
-    <div id="main-wrapper" class="col-md-11">
-        <div class="col-lg-8">
+    <div id="main-wrapper" class="col-sm-10">
+        <div class="col-sm-12">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>

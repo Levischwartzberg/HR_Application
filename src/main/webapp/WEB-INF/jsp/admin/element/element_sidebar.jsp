@@ -1,4 +1,4 @@
-<div class="sidebar-wrapper" class="col-md-1">
+<div id="sidebar-wrapper" class="col-sm-2">
     <div id="sidebar">
         <ul class="nav list-group">
             <li>
