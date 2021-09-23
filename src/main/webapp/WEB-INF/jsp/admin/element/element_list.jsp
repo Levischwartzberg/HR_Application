@@ -24,8 +24,8 @@
                             <td>${elementType.id}</td>
                             <td>${elementType.elementTypeName}</td>
                             <td>Elements go here....</td>
-                            <td>Edit</td>
-                            <td>Delete</td>
+                            <td><a href="/admin/element/edit/${elementType.id}"> Edit </a></td>
+                            <td><a href="/admin/element/delete/${elementType.id}"> Delete </a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

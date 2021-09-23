@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,13 +58,36 @@ public class AdminController {
     public String elementTypeEdit(@PathVariable int id, Model model) {
         ElementType elementType = elementTypeService.getElementTypeById(id);
 
-        List<Element> elementList = elementType.getElementList();
-        for (Element element : elementList) {
-            System.out.println(element.getElementName());
-        }
+//        List<Element> elementList = elementType.getElementList();
+//        for (Element element : elementList) {
+//            System.out.println(element.getElementName());
+//        }
 
         model.addAttribute("elementType", elementType);
         return "admin/element/element_edit";
+    }
+
+    @RequestMapping(value = "admin/element/update", method = RequestMethod.POST)
+    public String elementTypeUpdate(ElementType elementType,
+                                    Model model,
+                                    @RequestParam("inputNewElement") String newElement) {
+        if(!newElement.equals("")) {
+            elementType.getElementList().add(new Element(newElement));
+        }
+        for(int i = 0; i < elementType.getElementList().size(); i++) {
+            if(elementType.getElementList().get(i).getElementName().equals("")) {
+                elementType.getElementList().remove(i);
+            }
+        }
+
+        elementTypeService.saveElementType(elementType);
+        return "redirect:/admin/element/edit/" + elementType.getId();
+    }
+
+    @RequestMapping(value = "admin/element/delete/{id}", method = RequestMethod.GET)
+    public String elemenTypeDelete(@PathVariable int id) {
+        elementTypeService.deleteElementType(id);
+        return "redirect:/admin/element/list";
     }
 
     //region Helper Methods
