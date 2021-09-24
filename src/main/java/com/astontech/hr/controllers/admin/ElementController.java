@@ -1,9 +1,8 @@
-package com.astontech.hr.controllers;
+package com.astontech.hr.controllers.admin;
 
 import com.astontech.hr.domain.Element;
 import com.astontech.hr.domain.ElementType;
 import com.astontech.hr.domain.VO.ElementVO;
-import com.astontech.hr.services.ElementService;
 import com.astontech.hr.services.ElementTypeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Controller
-public class AdminController {
+public class ElementController {
 
     @Autowired
     private ElementTypeService elementTypeService;
 
-    @Autowired
-    private ElementService elementService;
-
     private Logger log = Logger.getLogger(AdminController.class);
-
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminHome() {
-        return "admin/adminHome";
-    }
 
     @RequestMapping(value = "/admin/element/add", method = RequestMethod.GET)
     public String adminElementGet(Model model) {
