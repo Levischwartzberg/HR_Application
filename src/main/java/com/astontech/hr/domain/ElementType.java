@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 public class ElementType {
 
+    //region Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ElementTypeId")
@@ -18,6 +19,7 @@ public class ElementType {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Element> elementList;
+    //endregion
 
     //region Constructors
     public ElementType() {
