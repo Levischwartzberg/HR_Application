@@ -44,6 +44,12 @@ public class VehicleController {
         return "admin/vehicle/vehicle_add";
     }
 
+    @RequestMapping(value = "/admin/vehicle/list", method = RequestMethod.GET)
+    public String adminVehicleList(Model model) {
+        model.addAttribute("vehicleList", vehicleService.listAllVehicles());
+        return "admin/vehicle/vehicle_list";
+    }
+
     //region Helper Methods
     private void saveVehicleFromVehicleVO(VehicleVO vehicleVO) {
 
@@ -80,6 +86,8 @@ public class VehicleController {
             }
         }
 
+        vehicle.setVehicleModel(vehicleModel);
+        vehicleModel.setVehicleMake(vehicleMake);
         vehicleList.add(vehicle);
         vehicleModel.setVehicleList(vehicleList);
         if (newModel == true) {
