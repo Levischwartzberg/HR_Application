@@ -58,18 +58,22 @@ public class VehicleController {
         vehicle.setPurchasePrice(vehicleVO.getNewPurchasePrice());
         vehicle.setVehicleYear(vehicleVO.getNewVehicleYear());
 
-        if(!(vehicleVO.getNewVehicleModel().equals(""))) {
+        if(!(vehicleVO.getNewVehicleMake().equals(""))) {
+            vehicleMake.setVehicleMakeName(vehicleVO.getNewVehicleMake());
             vehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
         }
         else {
-            vehicleModel.setVehicleModelName(vehicleVO.getVehicleModel());
+            vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getVehicleMake());
+            if(!(vehicleVO.getNewVehicleModel().equals(""))) {
+                vehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
+            }
+            else {
+                vehicleModel = vehicleModelService.findByVehicleModelName(vehicleVO.getVehicleModel());
+            }
         }
-        if(!(vehicleVO.getNewVehicleMake().equals(""))) {
-            vehicleMake.setVehicleMakeName(vehicleVO.getNewVehicleMake());
-        }
-        else {
-            vehicleMake.setVehicleMakeName(vehicleVO.getVehicleMake());
-        }
+        List<Vehicle> vehicleList = new ArrayList<>();
+        vehicleList.add(vehicle);
+        vehicleModel.setVehicleList(vehicleList);
         List<VehicleModel> vehicleModelList = new ArrayList<>();
         vehicleModelList.add(vehicleModel);
         vehicleMake.setVehicleModelList(vehicleModelList);
