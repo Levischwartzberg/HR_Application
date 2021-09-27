@@ -49,6 +49,10 @@ public class VehicleController {
 
         VehicleMake vehicleMake = new VehicleMake();
         VehicleModel vehicleModel = new VehicleModel();
+        List<Vehicle> vehicleList = new ArrayList<>();
+        List<VehicleModel> vehicleModelList = new ArrayList<>();
+
+        boolean newModel = true;
 
         Vehicle vehicle = new Vehicle();
         vehicle.setColor(vehicleVO.getNewVehicleColor());
@@ -64,22 +68,25 @@ public class VehicleController {
         }
         else {
             vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getVehicleMake());
+            vehicleModelList = vehicleMake.getVehicleModelList();
+
             if(!(vehicleVO.getNewVehicleModel().equals(""))) {
                 vehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
             }
             else {
                 vehicleModel = vehicleModelService.findByVehicleModelName(vehicleVO.getVehicleModel());
+                vehicleList = vehicleModel.getVehicleList();
+                newModel = false;
             }
         }
-        List<Vehicle> vehicleList = new ArrayList<>();
+
         vehicleList.add(vehicle);
         vehicleModel.setVehicleList(vehicleList);
-        List<VehicleModel> vehicleModelList = vehicleMake.getVehicleModelList();
-        vehicleModelList.add(vehicleModel);
+        if (newModel == true) {
+            vehicleModelList.add(vehicleModel);
+        }
         vehicleMake.setVehicleModelList(vehicleModelList);
         vehicleMakeService.saveVehicleMake(vehicleMake);
-
-
     }
     //endregion
 }
