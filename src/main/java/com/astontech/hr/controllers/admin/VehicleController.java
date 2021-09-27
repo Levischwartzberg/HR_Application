@@ -74,7 +74,7 @@ public class VehicleController {
         List<Vehicle> vehicleList = new ArrayList<>();
         vehicleList.add(vehicle);
         vehicleModel.setVehicleList(vehicleList);
-        List<VehicleModel> vehicleModelList = new ArrayList<>();
+        List<VehicleModel> vehicleModelList = vehicleMake.getVehicleModelList();
         vehicleModelList.add(vehicleModel);
         vehicleMake.setVehicleModelList(vehicleModelList);
         vehicleMakeService.saveVehicleMake(vehicleMake);
