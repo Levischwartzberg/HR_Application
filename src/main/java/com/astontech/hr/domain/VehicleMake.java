@@ -18,7 +18,7 @@ public class VehicleMake {
 
     private String vehicleMakeName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<VehicleModel> vehicleModelList;
     //endregion
 

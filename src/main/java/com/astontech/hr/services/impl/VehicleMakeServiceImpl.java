@@ -4,7 +4,9 @@ import com.astontech.hr.domain.VehicleMake;
 import com.astontech.hr.repositories.VehicleMakeRepository;
 import com.astontech.hr.services.VehicleMakeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VehicleMakeServiceImpl implements VehicleMakeService {
 
     @Autowired

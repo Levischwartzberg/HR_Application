@@ -5,7 +5,9 @@ import com.astontech.hr.domain.VehicleModel;
 import com.astontech.hr.repositories.VehicleModelRepository;
 import com.astontech.hr.services.VehicleModelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VehicleModelServiceImpl implements VehicleModelService {
 
     @Autowired
