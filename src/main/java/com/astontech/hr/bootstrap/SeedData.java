@@ -7,7 +7,6 @@ import com.astontech.hr.domain.VehicleModel;
 import com.astontech.hr.services.ElementService;
 import com.astontech.hr.services.ElementTypeService;
 import com.astontech.hr.services.VehicleMakeService;
-import com.astontech.hr.services.impl.ElementTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

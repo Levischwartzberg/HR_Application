@@ -17,7 +17,15 @@
 
         <div id=main-wrapper class="col-sm-10">
             <div class="col-sm-8">
-
+                <c:set var="idx" value="0" scope="page" />
+                <form:form class="form-horizontal" modelAttribute="vehicleMakeList" action="/admin/vehicle/add" method="post">
+                    <c:forEach items="${vehicleMakeList}" var="vehicleMake">
+                        <p>${vehicleMake.vehicleMakeName}</p>
+                    </c:forEach>
+                    <div class="row">
+                        <button class="btn btn-primary">Update</button>
+                    </div>
+                </form:form>
             </div>
             <div class="col-sm-4">
                 <div class="${successAlert == null ? 'hidden' : successAlert}" id="successAlert">
