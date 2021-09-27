@@ -5,7 +5,7 @@ import com.astontech.hr.domain.VehicleModel;
 
 public interface VehicleModelService {
 
-    Iterable<VehicleModel> listAllVehicleMakes();
+    Iterable<VehicleModel> listAllVehicleModels();
 
     VehicleModel getVehicleModelById(Integer id);
 
@@ -17,5 +17,7 @@ public interface VehicleModelService {
 
     //region Custom Queries
     Iterable<VehicleModel> findAllByVehicleMake(VehicleMake vehicleMake);
+
+    VehicleModel findByVehicleModelName(String vehicleModelName);
     //endregion
 }

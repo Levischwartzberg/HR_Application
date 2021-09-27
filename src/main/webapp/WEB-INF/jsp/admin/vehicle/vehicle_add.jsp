@@ -18,12 +18,41 @@
         <div id=main-wrapper class="col-sm-10">
             <div class="col-sm-8">
                 <c:set var="idx" value="0" scope="page" />
-                <form:form class="form-horizontal" modelAttribute="vehicleMakeList" action="/admin/vehicle/add" method="post">
-                    <c:forEach items="${vehicleMakeList}" var="vehicleMake">
-                        <p>${vehicleMake.vehicleMakeName}</p>
-                    </c:forEach>
+                <form:form class="form-horizontal" modelAttribute="vehicleVO" action="/admin/vehicle/add" method="post">
                     <div class="row">
-                        <button class="btn btn-primary">Update</button>
+                        <h6>Select an existing make or enter in a new one</h6>
+                        <form:select path="vehicleMake">
+                            <c:forEach items="${vehicleVO.vehicleMakeList}" var="vehicleMake">
+                                <option value="${vehicleMake.vehicleMakeName}">${vehicleMake.vehicleMakeName}</option>
+                            </c:forEach>
+                        </form:select>
+                        <form:input path="newVehicleMake"></form:input>
+                        <form:select path="vehicleModel">
+                            <c:forEach items="${vehicleVO.vehicleModelList}" var="vehicleModel">
+                                <option value="${vehicleModel.vehicleModelName}">${vehicleModel.vehicleModelName}</option>
+                            </c:forEach>
+                        </form:select>
+                        <form:input path="newVehicleModel"></form:input>
+                    </div>
+                    <div class="row">
+                        <label for="vehicleYearInput">Vehicle Year</label>
+                        <form:input path="newVehicleYear" id="vehicleYearInput"></form:input>
+                        <label for="licensePlateInput">Vehicle License Plate</label>
+                        <form:input path="newLicensePlate" id="licensePlateInput"></form:input>
+                        <label for="vinInput">Vehicle VIN</label>
+                        <form:input path="newVIN" id="vinInput"></form:input>
+                        <label for="vehicleColorInput"> Vehicle Color</label>
+                        <form:input path="newVehicleColor" id="vehicleColorInput"></form:input>
+                        <label for="isPurchaseCheckbox">Vehicle Purchased?</label>
+                        <form:checkbox path="newIsPurchase" id="isPurchaseCheckbox"></form:checkbox>
+                        <label for="purchasePriceInput">Vehicle Purchase Price</label>
+                        <form:input type="number" step="10" path="newPurchasePrice" id="purchasePriceInput"></form:input>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <form:button type="reset" value="cancel" class="btn btn-default">Cancel</form:button>
+                            <form:button type="submit" value="save" class="btn btn-default">Save</form:button>
+                        </div>
                     </div>
                 </form:form>
             </div>

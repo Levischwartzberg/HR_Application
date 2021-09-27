@@ -13,4 +13,8 @@ public interface VehicleMakeService {
     Iterable<VehicleMake> saveVehicleMakeList(Iterable<VehicleMake> vehicleMakeIterable);
 
     void deleteVehicleMake(Integer id);
+
+    //region Custom Queries
+    VehicleMake findByVehicleMakeName(String vehicleMakeName);
+    //endregion
 }

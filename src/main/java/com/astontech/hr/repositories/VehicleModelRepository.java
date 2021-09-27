@@ -9,4 +9,6 @@ import java.util.List;
 public interface VehicleModelRepository extends CrudRepository<VehicleModel, Integer> {
 
     List<VehicleModel> findAllByVehicleMake(VehicleMake vehicleMake);
+
+    VehicleModel findByVehicleModelName(String vehicleModelName);
 }

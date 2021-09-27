@@ -14,7 +14,7 @@ public class VehicleModelServiceImpl implements VehicleModelService {
     VehicleModelRepository vehicleModelRepository;
 
     @Override
-    public Iterable<VehicleModel> listAllVehicleMakes() {
+    public Iterable<VehicleModel> listAllVehicleModels() {
         return vehicleModelRepository.findAll();
     }
 
@@ -41,5 +41,10 @@ public class VehicleModelServiceImpl implements VehicleModelService {
     @Override
     public Iterable<VehicleModel> findAllByVehicleMake(VehicleMake vehicleMake) {
         return vehicleModelRepository.findAllByVehicleMake(vehicleMake);
+    }
+
+    @Override
+    public VehicleModel findByVehicleModelName(String vehicleModelName) {
+        return vehicleModelRepository.findByVehicleModelName(vehicleModelName);
     }
 }
