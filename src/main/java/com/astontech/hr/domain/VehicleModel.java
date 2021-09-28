@@ -1,5 +1,7 @@
 package com.astontech.hr.domain;
 
+import sun.security.util.ArrayUtil;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -33,6 +35,10 @@ public class VehicleModel {
     }
     public VehicleModel(String vehicleModelName) {
         this.vehicleModelName = vehicleModelName;
+    }
+    public VehicleModel(String vehicleModelName, List<Vehicle> vehicleList) {
+        this.vehicleModelName = vehicleModelName;
+        this.vehicleList = vehicleList;
     }
     public VehicleModel(String vehicleModelName, VehicleMake vehicleMake, List<Vehicle> vehicleList) {
         this.vehicleModelName = vehicleModelName;
@@ -80,6 +86,17 @@ public class VehicleModel {
 
     public void setVehicleList(List<Vehicle> vehicleList) {
         this.vehicleList = vehicleList;
+    }
+    //endregion
+
+    //region Helpers
+    public void removeChild(Integer childId) {
+        for(int i = 0; i < vehicleList.size(); i++) {
+            if (vehicleList.get(i).getId() == childId) {
+                vehicleList.remove(i);
+                i--;
+            }
+        }
     }
     //endregion
 }

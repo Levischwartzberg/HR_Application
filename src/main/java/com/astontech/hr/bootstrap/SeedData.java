@@ -1,9 +1,6 @@
 package com.astontech.hr.bootstrap;
 
-import com.astontech.hr.domain.Element;
-import com.astontech.hr.domain.ElementType;
-import com.astontech.hr.domain.VehicleMake;
-import com.astontech.hr.domain.VehicleModel;
+import com.astontech.hr.domain.*;
 import com.astontech.hr.services.ElementService;
 import com.astontech.hr.services.ElementTypeService;
 import com.astontech.hr.services.VehicleMakeService;
@@ -58,23 +55,30 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void generateVehicleMakesAndModels() {
-        VehicleMake ford = new VehicleMake("Ford");
-        VehicleMake toyota = new VehicleMake("Toyota");
-
-        List<VehicleModel> fordModelList = new ArrayList<>();
-        fordModelList.add(new VehicleModel("F-150"));
-        fordModelList.add(new VehicleModel("Focus"));
-        fordModelList.add(new VehicleModel("F-350"));
-
-        List<VehicleModel> toyotaModelList = new ArrayList<>();
-        toyotaModelList.add(new VehicleModel("Corolla"));
-        toyotaModelList.add(new VehicleModel("Camry"));
-        toyotaModelList.add(new VehicleModel("Tacoma"));
-
-        ford.setVehicleModelList(fordModelList);
-        toyota.setVehicleModelList(toyotaModelList);
-
-        vehicleMakeService.saveVehicleMake(ford);
-        vehicleMakeService.saveVehicleMake(toyota);
+//        VehicleMake ford = new VehicleMake("Ford");
+//        VehicleMake toyota = new VehicleMake("Toyota");
+//
+//        List<Vehicle> f150List = new ArrayList<>();
+//        List<Vehicle> focusList = new ArrayList<>();
+//        List<Vehicle> f350List = new ArrayList<>();
+//        List<Vehicle> corollaList = new ArrayList<>();
+//        List<Vehicle> camryList = new ArrayList<>();
+//        List<Vehicle> tacomaList = new ArrayList<>();
+//
+//        List<VehicleModel> fordModelList = new ArrayList<>();
+//        fordModelList.add(new VehicleModel("F-150", f150List));
+//        fordModelList.add(new VehicleModel("Focus", focusList));
+//        fordModelList.add(new VehicleModel("F-350", f350List));
+//
+//        List<VehicleModel> toyotaModelList = new ArrayList<>();
+//        toyotaModelList.add(new VehicleModel("Corolla", corollaList));
+//        toyotaModelList.add(new VehicleModel("Camry", camryList));
+//        toyotaModelList.add(new VehicleModel("Tacoma", tacomaList));
+//
+//        ford.setVehicleModelList(fordModelList);
+//        toyota.setVehicleModelList(toyotaModelList);
+//
+//        vehicleMakeService.saveVehicleMake(ford);
+//        vehicleMakeService.saveVehicleMake(toyota);
     }
 }

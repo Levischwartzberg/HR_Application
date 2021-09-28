@@ -25,6 +25,11 @@ public class Vehicle {
     private VehicleModel vehicleModel;
     //endregion
 
+//    @PreRemove
+//    public void dismissParent() {
+//        this.vehicleModel.removeChild(Id);
+//   }
+
     //region Constructors
     public Vehicle() {
     }

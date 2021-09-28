@@ -41,6 +41,9 @@ public class VehicleController {
     @RequestMapping(value = "/admin/vehicle/add", method = RequestMethod.POST)
     public String adminVehiclePost(Model model, VehicleVO vehicleVO) {
         saveVehicleFromVehicleVO(vehicleVO);
+        List<VehicleMake> vehicleMakeList = (List<VehicleMake>) vehicleMakeService.listAllVehicleMakes();
+        List<VehicleModel> vehicleModelList = (List<VehicleModel>) vehicleModelService.listAllVehicleModels();
+        model.addAttribute("vehicleVO", new VehicleVO(vehicleMakeList, vehicleModelList));
         return "admin/vehicle/vehicle_add";
     }
 
@@ -64,19 +67,6 @@ public class VehicleController {
 
         String vehicleId = vehicle.getId() + "";
 
-//        VehicleVO vehicleVO = new VehicleVO();
-//        vehicleVO.setVehicleMake(vehicle.getVehicleModel().getVehicleMake().getVehicleMakeName());
-//        vehicleVO.setVehicleModel(vehicle.getVehicleModel().getVehicleModelName());
-//        vehicleVO.setNewVehicleMake("");
-//        vehicleVO.setNewVehicleModel("");
-//        vehicleVO.setNewVehicleColor(vehicle.getColor());
-//        vehicleVO.setNewVehicleYear(vehicle.getVehicleYear());
-//        vehicleVO.setNewLicensePlate(vehicle.getLicensePlate());
-//        vehicleVO.setNewPurchasePrice(vehicle.getPurchasePrice());
-//        vehicleVO.setNewIsPurchase(vehicle.getIsPurchase());
-//        vehicleVO.setNewVIN(vehicle.getVIN());
-//
-//        saveVehicleFromVehicleVO(vehicleVO);
         Vehicle updatedVehicle = vehicleService.getVehicleById(vehicle.getId());
         updatedVehicle.setVehicleYear(vehicle.getVehicleYear());
         updatedVehicle.setVIN(vehicle.getVIN());
@@ -86,8 +76,20 @@ public class VehicleController {
         updatedVehicle.setIsPurchase(vehicle.getIsPurchase());
         vehicleService.saveVehicle(updatedVehicle);
 
-//        model.addAttribute("succesAlert", "visible");
+//        model.addAttribute("successAlert", "visible");
         return "redirect:/admin/vehicle/edit/" + vehicleId;
+    }
+
+    @RequestMapping(value = "admin/vehicle/delete/{id}", method = RequestMethod.GET)
+    public String vehicleDelete(@PathVariable int id) {
+        System.out.println(id);
+        VehicleModel vehicleModel = vehicleModelService.findByVehicleModelName(vehicleService.getVehicleById(id).getVehicleModel().getVehicleModelName());
+        Vehicle vehicle = vehicleService.getVehicleById(id);
+        vehicleModel.getVehicleList().remove(vehicle);
+        vehicleModelService.saveVehicleModel(vehicleModel);
+        vehicleService.deleteVehicle(id);
+
+        return "redirect:/admin/vehicle/list";
     }
 
     //region Helper Methods
