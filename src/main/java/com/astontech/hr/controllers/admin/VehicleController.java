@@ -111,15 +111,34 @@ public class VehicleController {
         vehicle.setVehicleYear(vehicleVO.getNewVehicleYear());
 
         if(!(vehicleVO.getNewVehicleMake().equals(""))) {
-            vehicleMake.setVehicleMakeName(vehicleVO.getNewVehicleMake());
-            vehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
+            List<VehicleMake> vehicleMakeList = (List<VehicleMake>) vehicleMakeService.listAllVehicleMakes();
+            boolean makeExists = false;
+            for (VehicleMake vehicleMake1 : vehicleMakeList) {
+                if (vehicleMake1.getVehicleMakeName().equals(vehicleVO.getNewVehicleMake())) {
+                    makeExists = true;
+                }
+            }
+            if (makeExists) {
+                vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getNewVehicleMake());
+            }
+            else {
+                vehicleMake.setVehicleMakeName(vehicleVO.getNewVehicleMake());
+            }
+            if(!(vehicleVO.getNewVehicleModel().equals(""))) {
+                vehicleModel = checkIfModelExists(vehicleVO.getNewVehicleModel());
+            }
+            else {
+                vehicleModel = vehicleModelService.findByVehicleModelName(vehicleVO.getVehicleModel());
+                vehicleList = vehicleModel.getVehicleList();
+                newModel = false;
+            }
         }
         else {
             vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getVehicleMake());
             vehicleModelList = vehicleMake.getVehicleModelList();
 
             if(!(vehicleVO.getNewVehicleModel().equals(""))) {
-                vehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
+                vehicleModel = checkIfModelExists(vehicleVO.getNewVehicleModel());
             }
             else {
                 vehicleModel = vehicleModelService.findByVehicleModelName(vehicleVO.getVehicleModel());
@@ -137,6 +156,24 @@ public class VehicleController {
         }
         vehicleMake.setVehicleModelList(vehicleModelList);
         vehicleMakeService.saveVehicleMake(vehicleMake);
+    }
+
+    public VehicleModel checkIfModelExists(String vehicleModelName) {
+        List<VehicleModel> vehicleModelList = (List<VehicleModel>) vehicleModelService.listAllVehicleModels();
+        boolean modelExists = false;
+        VehicleModel vehicleModel = new VehicleModel();
+        for (VehicleModel vehicleModel1 : vehicleModelList) {
+            if (vehicleModel1.getVehicleModelName().equals(vehicleModelName)) {
+                modelExists = true;
+            }
+        }
+        if (modelExists) {
+            vehicleModel = vehicleModelService.findByVehicleModelName(vehicleModelName);
+        }
+        else {
+            vehicleModel.setVehicleModelName(vehicleModelName);
+        }
+        return vehicleModel;
     }
     //endregion
 }
