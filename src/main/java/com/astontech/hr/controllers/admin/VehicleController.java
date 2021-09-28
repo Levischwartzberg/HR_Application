@@ -67,6 +67,19 @@ public class VehicleController {
 
         String vehicleId = vehicle.getId() + "";
 
+        String vehicleMakeName1 = vehicleService.getVehicleById(vehicle.getId()).getVehicleModel().getVehicleMake().getVehicleMakeName();
+        String vehicleModelName1 = vehicleService.getVehicleById(vehicle.getId()).getVehicleModel().getVehicleModelName();
+
+        String vehicleMakeName2 = vehicle.getVehicleModel().getVehicleMake().getVehicleMakeName();
+        String vehicleModelName2 = vehicle.getVehicleModel().getVehicleModelName();
+
+        if (!(vehicleMakeName1.equals(vehicleMakeName2))) {
+            System.out.println("Make Change!");
+        }
+        if (!(vehicleModelName1.equals(vehicleModelName2))) {
+            System.out.println("Model Change!");
+        }
+
         Vehicle updatedVehicle = vehicleService.getVehicleById(vehicle.getId());
         updatedVehicle.setVehicleYear(vehicle.getVehicleYear());
         updatedVehicle.setVIN(vehicle.getVIN());
