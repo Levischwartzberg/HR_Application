@@ -22,7 +22,7 @@ public class VehicleModel {
     @ManyToOne
     private VehicleMake vehicleMake;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Vehicle> vehicleList;
     //endregion
 

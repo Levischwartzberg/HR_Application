@@ -121,6 +121,7 @@ public class VehicleController {
             modelExists = checkIfModelExists(vehicleVO.getNewVehicleModel());
             if (modelExists) {
                 vehicleModel = vehicleModelService.findByVehicleModelName(vehicleVO.getNewVehicleModel());
+                modelExists = true;
             }
             else {
                 vehicleModel.setVehicleModelName(vehicleVO.getNewVehicleModel());
