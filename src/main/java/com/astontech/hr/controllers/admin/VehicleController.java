@@ -77,9 +77,14 @@ public class VehicleController {
 //        vehicleVO.setNewVIN(vehicle.getVIN());
 //
 //        saveVehicleFromVehicleVO(vehicleVO);
-        vehicleMakeService.saveVehicleMake(vehicle.getVehicleModel().getVehicleMake());
-        vehicleModelService.saveVehicleModel(vehicle.getVehicleModel());
-        vehicleService.saveVehicle(vehicle);
+        Vehicle updatedVehicle = vehicleService.getVehicleById(vehicle.getId());
+        updatedVehicle.setVehicleYear(vehicle.getVehicleYear());
+        updatedVehicle.setVIN(vehicle.getVIN());
+        updatedVehicle.setColor(vehicle.getColor());
+        updatedVehicle.setLicensePlate(vehicle.getLicensePlate());
+        updatedVehicle.setPurchasePrice(vehicle.getPurchasePrice());
+        updatedVehicle.setIsPurchase(vehicle.getIsPurchase());
+        vehicleService.saveVehicle(updatedVehicle);
 
 //        model.addAttribute("succesAlert", "visible");
         return "redirect:/admin/vehicle/edit/" + vehicleId;
