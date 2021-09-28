@@ -1,18 +1,18 @@
 package com.astontech.hr.controllers.admin;
 
 
+import com.astontech.hr.domain.*;
 import com.astontech.hr.domain.VO.VehicleVO;
-import com.astontech.hr.domain.Vehicle;
-import com.astontech.hr.domain.VehicleMake;
-import com.astontech.hr.domain.VehicleModel;
 import com.astontech.hr.services.VehicleMakeService;
 import com.astontech.hr.services.VehicleModelService;
 import com.astontech.hr.services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,41 @@ public class VehicleController {
         return "admin/vehicle/vehicle_list";
     }
 
+    @RequestMapping(value = "admin/vehicle/edit/{id}", method = RequestMethod.GET)
+    public String vehicleEdit(@PathVariable int id, Model model) {
+        Vehicle vehicle = vehicleService.getVehicleById(id);
+
+        model.addAttribute("vehicle", vehicle);
+        return "admin/vehicle/vehicle_edit";
+    }
+
+    @RequestMapping(value = "admin/vehicle/update", method = RequestMethod.POST)
+    public String vehicleUpdate(Vehicle vehicle,
+                                    Model model) {
+
+        String vehicleId = vehicle.getId() + "";
+
+//        VehicleVO vehicleVO = new VehicleVO();
+//        vehicleVO.setVehicleMake(vehicle.getVehicleModel().getVehicleMake().getVehicleMakeName());
+//        vehicleVO.setVehicleModel(vehicle.getVehicleModel().getVehicleModelName());
+//        vehicleVO.setNewVehicleMake("");
+//        vehicleVO.setNewVehicleModel("");
+//        vehicleVO.setNewVehicleColor(vehicle.getColor());
+//        vehicleVO.setNewVehicleYear(vehicle.getVehicleYear());
+//        vehicleVO.setNewLicensePlate(vehicle.getLicensePlate());
+//        vehicleVO.setNewPurchasePrice(vehicle.getPurchasePrice());
+//        vehicleVO.setNewIsPurchase(vehicle.getIsPurchase());
+//        vehicleVO.setNewVIN(vehicle.getVIN());
+//
+//        saveVehicleFromVehicleVO(vehicleVO);
+        vehicleMakeService.saveVehicleMake(vehicle.getVehicleModel().getVehicleMake());
+        vehicleModelService.saveVehicleModel(vehicle.getVehicleModel());
+        vehicleService.saveVehicle(vehicle);
+
+//        model.addAttribute("succesAlert", "visible");
+        return "redirect:/admin/vehicle/edit/" + vehicleId;
+    }
+
     //region Helper Methods
     private void saveVehicleFromVehicleVO(VehicleVO vehicleVO) {
 
@@ -64,7 +99,7 @@ public class VehicleController {
         vehicle.setColor(vehicleVO.getNewVehicleColor());
         vehicle.setLicensePlate(vehicleVO.getNewLicensePlate());
         vehicle.setVIN(vehicleVO.getNewVIN());
-        vehicle.setPurchase(vehicleVO.isNewIsPurchase());
+        vehicle.setIsPurchase(vehicleVO.getNewIsPurchase());
         vehicle.setPurchasePrice(vehicleVO.getNewPurchasePrice());
         vehicle.setVehicleYear(vehicleVO.getNewVehicleYear());
 

@@ -109,7 +109,7 @@ public class VehicleVO {
         this.newVehicleColor = newVehicleColor;
     }
 
-    public boolean isNewIsPurchase() {
+    public boolean getNewIsPurchase() {
         return newIsPurchase;
     }
 

@@ -89,11 +89,11 @@ public class Vehicle {
         this.color = color;
     }
 
-    public boolean isPurchase() {
+    public boolean getIsPurchase() {
         return isPurchase;
     }
 
-    public void setPurchase(boolean purchase) {
+    public void setIsPurchase(boolean purchase) {
         isPurchase = purchase;
     }
 
