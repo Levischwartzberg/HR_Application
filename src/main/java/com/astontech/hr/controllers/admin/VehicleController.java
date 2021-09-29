@@ -125,24 +125,22 @@ public class VehicleController {
                                     Model model) {
         VehicleMake updatedVehicleMake = vehicleMakeService.getVehicleMakeById(vehicleMake.getId());
         List<Integer> removeModelIndexes = new ArrayList<>();
+        List<Integer> removeModelIds = new ArrayList<>();
         for(Integer i = 0; i < vehicleMake.getVehicleModelList().size(); i++) {
             if(vehicleMake.getVehicleModelList().get(i).getVehicleModelName().equals("")) {
                 removeModelIndexes.add(i);
+                removeModelIds.add(vehicleMake.getVehicleModelList().get(i).getId());
             }
         }
         int iter = 0;
         for (Integer index : removeModelIndexes) {
-            iter++;
             updatedVehicleMake.getVehicleModelList().remove(updatedVehicleMake.getVehicleModelList().get(index-iter));
-        }
-        for (VehicleModel vehicleModel : updatedVehicleMake.getVehicleModelList()) {
-            for (Vehicle vehicle : vehicleModel.getVehicleList()) {
-                System.out.println(vehicle.getVehicleModel().getVehicleMake().getVehicleMakeName());
-                System.out.println(vehicle.getVehicleModel().getVehicleModelName());
-                System.out.println(vehicle.getVehicleYear());
-            }
+            iter++;
         }
         vehicleMakeService.saveVehicleMake(updatedVehicleMake);
+        for(Integer id : removeModelIds) {
+            vehicleModelService.deleteVehicleModel(id);
+        }
         model.addAttribute("successAlert", "visible");
         return "redirect:/admin/vehiclemake/list/";
     }
