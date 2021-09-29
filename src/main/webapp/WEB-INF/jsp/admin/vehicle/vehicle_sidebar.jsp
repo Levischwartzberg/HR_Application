@@ -7,6 +7,9 @@
             <li>
                 <a class="list-group-item" href="/admin/vehicle/list">List All</a>
             </li>
+            <li>
+                <a class="list-group-item" href="/admin/vehiclemake/list">Edit Make/Model</a>
+            </li>
         </ul>
     </div>
 </div>

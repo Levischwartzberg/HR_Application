@@ -12,7 +12,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/admin/">Admin</a></li>
                 <li><a href="/admin/element/list">Elements</a></li>
-                <li><a href="/admin/vehicle/add">Vehicles</a></li>
+                <li><a href="/admin/vehicle/list">Vehicles</a></li>
                 <li><a href="/admin/training">Training Modules</a></li>
             </ul>
         </div>

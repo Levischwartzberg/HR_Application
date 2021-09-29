@@ -105,6 +105,12 @@ public class VehicleController {
         return "redirect:/admin/vehicle/list";
     }
 
+    @RequestMapping(value ="admin/vehiclemake/list", method = RequestMethod.GET)
+    public String adminVehicleMakeList(Model model) {
+        model.addAttribute("vehicleMakeList", vehicleMakeService.listAllVehicleMakes());
+        return "admin/vehicle/vehicle_make_list";
+    }
+
     //region Helper Methods
     private void saveVehicleFromVehicleVO(VehicleVO vehicleVO) {
 

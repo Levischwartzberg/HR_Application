@@ -4,7 +4,7 @@
 <div class="container">
     <div class="jumbotron">
         <h2>WELCOME TO ASTONTECH HR APPLICATION :)</h2>
-        <p>THis application manages Aston Technologies HR info</p>
+        <p>This application manages Aston Technologies HR info</p>
     </div>
 </div>
 
