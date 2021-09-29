@@ -7,7 +7,9 @@
         $("#successAlert").delay(3000).fadeOut(1500);
         $("#warningAlert").delay(8000).fadeOut(1500);
         $("#errorAlert").delay(5000).fadeOut(1500);
+        console.log($('#vehicleMakeSelect').val());
     });
+
 </script>
 
 <div class="wrapper">
@@ -20,33 +22,36 @@
                 <c:set var="idx" value="0" scope="page" />
                 <form:form class="form-horizontal" modelAttribute="vehicleVO" action="/admin/vehicle/add" method="post">
                     <div class="row">
-                        <h6>Select an existing make or enter in a new one</h6>
-                        <form:select path="vehicleMake">
+                        <label for="vehicleMakeSelect">Vehicle Make</label>
+                        <form:select path="vehicleMake" cssClass="form-control" id="vehicleMakeSelect" name="vehicleMake">
                             <c:forEach items="${vehicleVO.vehicleMakeList}" var="vehicleMake">
                                 <option value="${vehicleMake.vehicleMakeName}">${vehicleMake.vehicleMakeName}</option>
                             </c:forEach>
                         </form:select>
-                        <form:input path="newVehicleMake"></form:input>
-                        <form:select path="vehicleModel">
+                        <form:input path="newVehicleMake" cssClass="form-control"></form:input>
+
+                        <label for="vehicleModelSelect">Vehicle Model</label>
+                        <form:select path="vehicleModel" cssClass="form-control" id="vehicleModelSelect" name="vehicleModel">
                             <c:forEach items="${vehicleVO.vehicleModelList}" var="vehicleModel">
                                 <option value="${vehicleModel.vehicleModelName}">${vehicleModel.vehicleModelName}</option>
                             </c:forEach>
                         </form:select>
-                        <form:input path="newVehicleModel"></form:input>
+                        <form:input path="newVehicleModel" cssClass="form-control"></form:input>
                     </div>
                     <div class="row">
                         <label for="vehicleYearInput">Vehicle Year</label>
-                        <form:input path="newVehicleYear" id="vehicleYearInput"></form:input>
+                        <form:input path="newVehicleYear" id="vehicleYearInput" cssClass="form-control"></form:input>
                         <label for="licensePlateInput">Vehicle License Plate</label>
-                        <form:input path="newLicensePlate" id="licensePlateInput"></form:input>
+                        <form:input path="newLicensePlate" id="licensePlateInput" cssClass="form-control"></form:input>
                         <label for="vinInput">Vehicle VIN</label>
-                        <form:input path="newVIN" id="vinInput"></form:input>
+                        <form:input path="newVIN" id="vinInput" cssClass="form-control"></form:input>
                         <label for="vehicleColorInput"> Vehicle Color</label>
-                        <form:input path="newVehicleColor" id="vehicleColorInput"></form:input>
+                        <form:input path="newVehicleColor" id="vehicleColorInput" cssClass="form-control"></form:input>
                         <label for="isPurchaseCheckbox">Vehicle Purchased?</label>
-                        <form:checkbox path="newIsPurchase" id="isPurchaseCheckbox"></form:checkbox>
+                        <form:checkbox path="newIsPurchase" id="isPurchaseCheckbox" cssClass="form-check"></form:checkbox>
+                        <br/>
                         <label for="purchasePriceInput">Vehicle Purchase Price</label>
-                        <form:input type="number" step="10" path="newPurchasePrice" id="purchasePriceInput"></form:input>
+                        <form:input type="number" step="10" path="newPurchasePrice" id="purchasePriceInput" cssClass="form-control"></form:input>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">

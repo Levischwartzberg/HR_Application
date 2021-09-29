@@ -16,24 +16,25 @@
                 <c:set var="idx" value="0" scope="page" />
                 <form:form class="form-horizontal" modelAttribute="vehicle" action="/admin/vehicle/update" method="post">
                     <form:hidden path="id" />
-                    <div class="row">
+                    <div class="row form-group">
                         <h6>Select an existing make or enter in a new one</h6>
                         <form:input path="vehicleModel.vehicleMake.vehicleMakeName"></form:input>
                         <form:input path="vehicleModel.vehicleModelName"></form:input>
                     </div>
-                    <div class="row">
+                    <div class="row form-group">
                         <label for="vehicleYearInput">Vehicle Year</label>
-                        <form:input path="vehicleYear" id="vehicleYearInput"></form:input>
+                        <form:input path="vehicleYear" id="vehicleYearInput" cssClass="form-control"></form:input>
                         <label for="licensePlateInput">Vehicle License Plate</label>
-                        <form:input path="licensePlate" id="licensePlateInput"></form:input>
+                        <form:input path="licensePlate" id="licensePlateInput" cssClass="form-control"></form:input>
                         <label for="vinInput">Vehicle VIN</label>
-                        <form:input path="VIN" id="vinInput"></form:input>
+                        <form:input path="VIN" id="vinInput" cssClass="form-control"></form:input>
                         <label for="vehicleColorInput"> Vehicle Color</label>
-                        <form:input path="color" id="vehicleColorInput"></form:input>
+                        <form:input path="color" id="vehicleColorInput" cssClass="form-control"></form:input>
                         <label for="isPurchaseCheckbox">Vehicle Purchased?</label>
-                        <form:checkbox path="isPurchase" id="isPurchaseCheckbox"></form:checkbox>
+                        <form:checkbox path="isPurchase" id="isPurchaseCheckbox" cssClass="form-check-inline"></form:checkbox>
+                        <br/>
                         <label for="purchasePriceInput">Vehicle Purchase Price</label>
-                        <form:input type="number" step="10" path="purchasePrice" id="purchasePriceInput"></form:input>
+                        <form:input type="number" step="10" path="purchasePrice" id="purchasePriceInput" cssClass="form-control"></form:input>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
