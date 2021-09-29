@@ -124,6 +124,12 @@ public class VehicleController {
     public String vehicleMakeUpdate(VehicleMake vehicleMake,
                                     Model model) {
         VehicleMake updatedVehicleMake = vehicleMakeService.getVehicleMakeById(vehicleMake.getId());
+        updatedVehicleMake.setVehicleMakeName(vehicleMake.getVehicleMakeName());
+        for(int i = 0; i < updatedVehicleMake.getVehicleModelList().size(); i++) {
+            if (!(updatedVehicleMake.getVehicleModelList().get(i).getVehicleModelName().equals(vehicleMake.getVehicleModelList().get(i).getVehicleModelName()))) {
+                updatedVehicleMake.getVehicleModelList().get(i).setVehicleModelName(vehicleMake.getVehicleModelList().get(i).getVehicleModelName());
+            }
+        }
         List<Integer> removeModelIndexes = new ArrayList<>();
         List<Integer> removeModelIds = new ArrayList<>();
         for(Integer i = 0; i < vehicleMake.getVehicleModelList().size(); i++) {
