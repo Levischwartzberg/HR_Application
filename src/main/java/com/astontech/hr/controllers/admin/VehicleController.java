@@ -130,8 +130,10 @@ public class VehicleController {
                 removeModelIndexes.add(i);
             }
         }
+        int iter = 0;
         for (Integer index : removeModelIndexes) {
-            updatedVehicleMake.getVehicleModelList().remove(updatedVehicleMake.getVehicleModelList().get(index));
+            iter++;
+            updatedVehicleMake.getVehicleModelList().remove(updatedVehicleMake.getVehicleModelList().get(index-iter));
         }
         for (VehicleModel vehicleModel : updatedVehicleMake.getVehicleModelList()) {
             for (Vehicle vehicle : vehicleModel.getVehicleList()) {
