@@ -113,6 +113,7 @@ public class VehicleController {
         model.addAttribute("vehicleMakeList", vehicleMakeService.listAllVehicleMakes());
         return "admin/vehicle/vehicle_make_list";
     }
+
     @RequestMapping(value = "admin/vehiclemake/edit/{id}", method = RequestMethod.GET)
     public String vehicleMakeEdit(@PathVariable int id, Model model) {
         VehicleMake vehicleMake = vehicleMakeService.getVehicleMakeById(id);
@@ -120,6 +121,7 @@ public class VehicleController {
         model.addAttribute("vehicleMake", vehicleMake);
         return "admin/vehicle/vehicle_make_edit";
     }
+
     @RequestMapping(value = "admin/vehiclemake/update", method = RequestMethod.POST)
     public String vehicleMakeUpdate(VehicleMake vehicleMake,
                                     Model model) {
@@ -149,6 +151,12 @@ public class VehicleController {
         }
         model.addAttribute("successAlert", "visible");
         return "redirect:/admin/vehiclemake/list/";
+    }
+
+    @RequestMapping(value = "admin/vehiclemake/delete/{id}", method = RequestMethod.GET)
+    public String vehicleMakeDelete(@PathVariable int id) {
+        vehicleMakeService.deleteVehicleMake(id);
+        return "redirect:/admin/vehiclemake/list";
     }
     //endregion
 
