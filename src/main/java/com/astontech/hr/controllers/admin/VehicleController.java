@@ -29,6 +29,7 @@ public class VehicleController {
     @Autowired
     VehicleService vehicleService;
 
+    //region Vehicle Section
     @RequestMapping(value = "/admin/vehicle/add", method = RequestMethod.GET)
     public String adminVehicleGet(Model model) {
         List<VehicleMake> vehicleMakeList = (List<VehicleMake>) vehicleMakeService.listAllVehicleMakes();
@@ -104,12 +105,22 @@ public class VehicleController {
 
         return "redirect:/admin/vehicle/list";
     }
+    //endregion
 
+    //region Vehicle Make Section
     @RequestMapping(value ="admin/vehiclemake/list", method = RequestMethod.GET)
     public String adminVehicleMakeList(Model model) {
         model.addAttribute("vehicleMakeList", vehicleMakeService.listAllVehicleMakes());
         return "admin/vehicle/vehicle_make_list";
     }
+    @RequestMapping(value = "admin/vehiclemake/edit/{id}", method = RequestMethod.GET)
+    public String vehicleMakeEdit(@PathVariable int id, Model model) {
+        VehicleMake vehicleMake = vehicleMakeService.getVehicleMakeById(id);
+
+        model.addAttribute("vehicleMake", vehicleMake);
+        return "admin/vehicle/vehicle_make_edit";
+    }
+    //endregion
 
     //region Helper Methods
     private void saveVehicleFromVehicleVO(VehicleVO vehicleVO) {

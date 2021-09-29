@@ -37,8 +37,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td><a href="/admin/vehicle/edit/${vehicleMake.id}"> Edit </a></td>
-                        <td><a href="/admin/vehicle/delete/${vehicleMake.id}"> Delete </a></td>
+                        <td><a href="/admin/vehiclemake/edit/${vehicleMake.id}"> Edit </a></td>
+                        <td><a href="/admin/vehiclemake/delete/${vehicleMake.id}"> Delete </a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
