@@ -2,20 +2,20 @@
 <%@include file="../../includes/navbar.jsp" %>
 <%@include file="../../includes/subnav_admin.jsp" %>
 
-<%--<script>--%>
-<%--    $(document).ready(function() {--%>
-<%--        $('.remove_button').click(function() {--%>
-<%--            // console.log(this.name);--%>
-<%--            // console.log($('#' + this.name).val());--%>
+<script>
+    $(document).ready(function() {
+        $('.remove_button').click(function() {
+            // console.log(this.name);
+            // console.log($('#' + this.name).val());
 
-<%--            //set field to ""--%>
-<%--            $('#' + this.name).val('');--%>
+            //set field to ""
+            $('#' + this.name).val('');
 
-<%--            $('#elementType').submit();--%>
-<%--        })--%>
-<%--    })--%>
+            $('#elementType').submit();
+        })
+    })
 
-<%--</script>--%>
+</script>
 
 <div class="wrapper">
 

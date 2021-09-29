@@ -120,6 +120,30 @@ public class VehicleController {
         model.addAttribute("vehicleMake", vehicleMake);
         return "admin/vehicle/vehicle_make_edit";
     }
+    @RequestMapping(value = "admin/vehiclemake/update", method = RequestMethod.POST)
+    public String vehicleMakeUpdate(VehicleMake vehicleMake,
+                                    Model model) {
+        VehicleMake updatedVehicleMake = vehicleMakeService.getVehicleMakeById(vehicleMake.getId());
+        List<Integer> removeModelIndexes = new ArrayList<>();
+        for(Integer i = 0; i < vehicleMake.getVehicleModelList().size(); i++) {
+            if(vehicleMake.getVehicleModelList().get(i).getVehicleModelName().equals("")) {
+                removeModelIndexes.add(i);
+            }
+        }
+        for (Integer index : removeModelIndexes) {
+            updatedVehicleMake.getVehicleModelList().remove(updatedVehicleMake.getVehicleModelList().get(index));
+        }
+        for (VehicleModel vehicleModel : updatedVehicleMake.getVehicleModelList()) {
+            for (Vehicle vehicle : vehicleModel.getVehicleList()) {
+                System.out.println(vehicle.getVehicleModel().getVehicleMake().getVehicleMakeName());
+                System.out.println(vehicle.getVehicleModel().getVehicleModelName());
+                System.out.println(vehicle.getVehicleYear());
+            }
+        }
+        vehicleMakeService.saveVehicleMake(updatedVehicleMake);
+        model.addAttribute("successAlert", "visible");
+        return "redirect:/admin/vehiclemake/list/";
+    }
     //endregion
 
     //region Helper Methods
