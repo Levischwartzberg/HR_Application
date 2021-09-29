@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,7 @@ public class VehicleController {
         List<VehicleMake> vehicleMakeList = (List<VehicleMake>) vehicleMakeService.listAllVehicleMakes();
         List<VehicleModel> vehicleModelList = (List<VehicleModel>) vehicleModelService.listAllVehicleModels();
         model.addAttribute("vehicleVO", new VehicleVO(vehicleMakeList, vehicleModelList));
+        model.addAttribute("successAlert", "visible");
         return "admin/vehicle/vehicle_add";
     }
 
@@ -63,8 +66,8 @@ public class VehicleController {
     }
 
     @RequestMapping(value = "admin/vehicle/update", method = RequestMethod.POST)
-    public String vehicleUpdate(Vehicle vehicle,
-                                    Model model) {
+    public RedirectView vehicleUpdate(Vehicle vehicle,
+                                RedirectAttributes redir) {
 
         String vehicleId = vehicle.getId() + "";
 
@@ -75,10 +78,14 @@ public class VehicleController {
         String vehicleModelName2 = vehicle.getVehicleModel().getVehicleModelName();
 
         if (!(vehicleMakeName1.equals(vehicleMakeName2))) {
-            System.out.println("Make Change!");
+            VehicleMake vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleMakeName1);
+            vehicleMake.setVehicleMakeName(vehicleMakeName2);
+            vehicleMakeService.saveVehicleMake(vehicleMake);
         }
         if (!(vehicleModelName1.equals(vehicleModelName2))) {
-            System.out.println("Model Change!");
+            VehicleModel vehicleModel = vehicleModelService.findByVehicleModelName(vehicleModelName1);
+            vehicleModel.setVehicleModelName(vehicleModelName2);
+            vehicleModelService.saveVehicleModel(vehicleModel);
         }
 
         Vehicle updatedVehicle = vehicleService.getVehicleById(vehicle.getId());
@@ -90,8 +97,9 @@ public class VehicleController {
         updatedVehicle.setIsPurchase(vehicle.getIsPurchase());
         vehicleService.saveVehicle(updatedVehicle);
 
-//        model.addAttribute("successAlert", "visible");
-        return "redirect:/admin/vehicle/edit/" + vehicleId;
+        RedirectView redirectView = new RedirectView("/admin/vehicle/edit/" + vehicleId, true);
+        redir.addFlashAttribute("successAlert", "visible");
+        return redirectView;
     }
 
     @RequestMapping(value = "admin/vehicle/delete/{id}", method = RequestMethod.GET)
@@ -247,11 +255,5 @@ public class VehicleController {
 //        }
         return makeExists;
     }
-//    if (makeExists) {
-//        vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleMakeName);
-//    }
-//        else {
-//        vehicleMake.setVehicleMakeName(vehicleMakeName);
-//    }
     //endregion
 }

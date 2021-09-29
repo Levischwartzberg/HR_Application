@@ -3,7 +3,12 @@
 <%@include file="../../includes/subnav_admin.jsp" %>
 
 <script>
-
+    $(document).ready(function() {
+        $("#successAlert").delay(3000).fadeOut(1500);
+        $("#warningAlert").delay(8000).fadeOut(1500);
+        $("#errorAlert").delay(5000).fadeOut(1500);
+        console.log($('#vehicleMakeSelect').val());
+    });
 </script>
 
 <div class="wrapper">
@@ -17,7 +22,7 @@
                 <form:form class="form-horizontal" modelAttribute="vehicle" action="/admin/vehicle/update" method="post">
                     <form:hidden path="id" />
                     <div class="row form-group">
-                        <h6>Select an existing make or enter in a new one</h6>
+                        <h6>Editing the vehicle make and/or model will change all equivalent makes and/or models throughout the database. </h6>
                         <form:input path="vehicleModel.vehicleMake.vehicleMakeName"></form:input>
                         <form:input path="vehicleModel.vehicleModelName"></form:input>
                     </div>

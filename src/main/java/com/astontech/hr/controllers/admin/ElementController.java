@@ -95,7 +95,7 @@ public class ElementController {
         }
 
         elementTypeService.saveElementType(elementType);
-        model.addAttribute("succesAlert", "visible");
+        model.addAttribute("successAlert", "visible");
         return "redirect:/admin/element/edit/" + elementType.getId();
     }
 
