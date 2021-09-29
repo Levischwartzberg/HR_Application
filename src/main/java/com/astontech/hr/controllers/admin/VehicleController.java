@@ -169,6 +169,7 @@ public class VehicleController {
         List<VehicleModel> vehicleModelList = new ArrayList<>();
 
         boolean modelExists = false;
+        boolean makeExists = false;
 
         Vehicle vehicle = new Vehicle();
         vehicle.setColor(vehicleVO.getNewVehicleColor());
@@ -179,7 +180,13 @@ public class VehicleController {
         vehicle.setVehicleYear(vehicleVO.getNewVehicleYear());
 
         if(!(vehicleVO.getNewVehicleMake().equals(""))) {
-            vehicleMake = checkIfMakeExists(vehicleVO.getNewVehicleMake());
+            makeExists = checkIfMakeExists(vehicleVO.getNewVehicleMake());
+            if (makeExists) {
+                vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getNewVehicleMake());
+            }
+            else {
+                vehicleMake.setVehicleMakeName(vehicleVO.getNewVehicleMake());
+            }
         }
         else {
             vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getVehicleMake());
@@ -223,7 +230,7 @@ public class VehicleController {
         return modelExists;
     }
 
-    public VehicleMake checkIfMakeExists(String vehicleMakeName) {
+    public boolean checkIfMakeExists(String vehicleMakeName) {
         List<VehicleMake> vehicleMakeList = (List<VehicleMake>) vehicleMakeService.listAllVehicleMakes();
         boolean makeExists = false;
         VehicleMake vehicleMake = new VehicleMake();
@@ -232,13 +239,19 @@ public class VehicleController {
                 makeExists = true;
             }
         }
-        if (makeExists) {
-            vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleMakeName);
-        }
-        else {
-            vehicleMake.setVehicleMakeName(vehicleMakeName);
-        }
-        return vehicleMake;
+//        if (makeExists) {
+//            vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleMakeName);
+//        }
+//        else {
+//            vehicleMake.setVehicleMakeName(vehicleMakeName);
+//        }
+        return makeExists;
     }
+//    if (makeExists) {
+//        vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleMakeName);
+//    }
+//        else {
+//        vehicleMake.setVehicleMakeName(vehicleMakeName);
+//    }
     //endregion
 }
