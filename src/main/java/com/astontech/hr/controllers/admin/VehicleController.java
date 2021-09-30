@@ -190,7 +190,9 @@ public class VehicleController {
         if(!(vehicleVO.getNewVehicleMake().equals(""))) {
             makeExists = checkIfMakeExists(vehicleVO.getNewVehicleMake());
             if (makeExists) {
+                System.out.println("Test!");
                 vehicleMake = vehicleMakeService.findByVehicleMakeName(vehicleVO.getNewVehicleMake());
+                vehicleModelList = vehicleMake.getVehicleModelList();
             }
             else {
                 vehicleMake.setVehicleMakeName(vehicleVO.getNewVehicleMake());
