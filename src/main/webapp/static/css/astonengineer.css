@@ -5,3 +5,27 @@
 .visible {
     visibility: visible;
 }
+
+.blueBackground {
+    background-color: #305F96;
+}
+
+.text-white {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#panelTitle {
+    background-color: #20438e;
+}
+
+#loginButton {
+    background-color: #20438e;
+    color: white;
+}
+
+#loginLogo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
